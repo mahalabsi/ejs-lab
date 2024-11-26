@@ -12,7 +12,7 @@ const RESTAURANT = {
       name: 'Quantum Quinoa Mushroom Burger',
       price: 13.0,
       rating: 4,
-      category: 'mains',
+      category: 'main',
       details:
         'A vegetarian burger made with a quinoa and mushroom patty, it will take you to another realm.'
     },
@@ -63,14 +63,14 @@ app.get('/', (req, res) => {
 })
 
 app.get('/menu', (req, res) => {
-  res.render('home.ejs', { restaurant: RESTAURANT })
+  res.render('menu.ejs', { RESTAURANT })
 })
 
 //3
-app.get('/menu/:category', (req, res) => {
+app.get('/menu/category/:category', (req, res) => {
   const category = req.params.category
   const menuItems = RESTAURANT.menu.filter((item) => item.category === category)
 
-  res.render('category', { menuItems: menuItems, category: category })
+  res.render('category.ejs', { menuItems, category })
 })
 app.listen(3000)
